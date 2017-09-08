@@ -11,7 +11,7 @@ var previous;
 var marlyn = getDrawing();
 
 function setup() {
-  createCanvas(1024, 768);
+  createCanvas(window.innerWidth, window.innerHeight);
   current = createVector(0,0);
   previous = createVector(0,0);
   
