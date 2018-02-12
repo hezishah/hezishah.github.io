@@ -19,6 +19,7 @@ midi.playing = false;
 midi.timeWarp = 1;
 midi.startDelay = 0;
 midi.BPM = 120;
+midi.Transpose = 0;
 
 midi.start =
 midi.resume = function(onsuccess) {
@@ -318,10 +319,11 @@ var startAudio = function(currentTime, fromCache, onsuccess) {
 			case 'noteOn':
 				if (channel.mute) break;
 				note = event.noteNumber - (midi.MIDIOffset || 0);
+				note += midi.Transpose;
 				eventQueue.push({
 				    event: event,
 				    time: queueTime,
-				    source: MIDI.noteOn(channelId, event.noteNumber, event.velocity, delay),
+				    source: MIDI.noteOn(channelId, event.noteNumber + midi.Transpose, event.velocity, delay),
 				    interval: scheduleTracking(channelId, note, queuedTime + midi.startDelay, offset - foffset, 144, event.velocity)
 				});
 				messages++;

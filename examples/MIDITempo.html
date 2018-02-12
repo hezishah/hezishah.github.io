@@ -62,13 +62,28 @@
 			Tempo Change:
 			<div>
 				<input for="amount" oninput="amount.value=rangeInput.value" id="slider" type="range" min="0" max="200" name="rangeInput" onchange="tempoChange(this.value)"/>
-				<input oninput="rangeInput.value=amount.value" id="box" type="text" value="0" name="amount" for="rangeInput" oninput="rangeInput.value=amount.value" onchange="tempoChange(this.value)"/>
+				<input oninput="rangeInput.value=amount.value" id="box" type="text" value="0" name="amount" for="rangeInput" oninput="rangeInput.value=amount.value" onchange="tempoChange(this.value)"  onkeydown = "if (event.keyCode == 13) tempoChange(this.value)"/>
+			</div>
+		</form>
+		<form>
+			Transpose:
+			<div>
+				<input for="amount" oninput="amount.value=rangeInput.value" id="sliderTranspose" type="range" min="-24" max="24" name="rangeInput" onchange="transposeChange(this.value)"/>
+				<input oninput="rangeInput.value=amount.value" id="boxTranspose" type="text" value="0" name="amount" for="rangeInput" oninput="rangeInput.value=amount.value" onchange="transposeChange(this.value)" onkeydown = "if (event.keyCode == 13) transposeChange(this.value)"/>
 			</div>
 		</form>
 	<div id="title" style="background: rgba(255,255,0,0.5); position: relative;color: #000; z-index: -1;padding: 5px 11px 5px;">Loading API...</div>
 	</div>
 
 	<script type="text/javascript">
+
+		function stopRKey(evt) { 
+			var evt = (evt) ? evt : ((event) ? event : null); 
+			var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
+			if ((evt.keyCode == 13) && (node.type=="text"))  {return false;} 
+		} 
+
+		document.onkeypress = stopRKey; 
 
 		if (typeof (console) === "undefined") var console = {
 			log: function () { }
@@ -212,14 +227,25 @@
 
 		function tempoChange(newVal)
 		{
+			prevVal = player.BPM;
 			t = player.currentTime;
 			/*player.stop();*/
 			player.BPM = newVal;
 			player.loadFile(song[0]);
 			player.BPM = newVal;
-			player.currentTime = t;
+			player.currentTime = (((t+10) * prevVal) / newVal);
 			player.start();
 		}
+
+		function transposeChange(newVal)
+		{
+			t = player.currentTime;
+			player.Transpose = parseInt(newVal);
+			player.loadFile(song[0]);
+			player.currentTime = t+1;
+			player.start();
+		}
+
 		function handleFiles(files) {
 			fileObject = files[0];
 			// Only process image files.
