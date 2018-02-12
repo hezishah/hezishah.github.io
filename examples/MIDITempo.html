@@ -198,7 +198,8 @@
 				var end = data.end >> 0; // end of song
 				if (now === end) { // go to next song
 					var id = ++songid % song.length;
-					player.loadFile(song[id], player.start); // load MIDI
+					/*player.loadFile(song[id], player.start);*/ // load MIDI
+					player.stop();
 				}
 				// display the information to the user
 				timeCursor.style.width = (percent * 100) + "%";

@@ -331,10 +331,11 @@ var startAudio = function(currentTime, fromCache, onsuccess) {
 			case 'noteOff':
 				if (channel.mute) break;
 				note = event.noteNumber - (midi.MIDIOffset || 0);
+				note += midi.Transpose;
 				eventQueue.push({
 				    event: event,
 				    time: queueTime,
-				    source: MIDI.noteOff(channelId, event.noteNumber, delay),
+				    source: MIDI.noteOff(channelId, event.noteNumber + midi.Transpose, delay),
 				    interval: scheduleTracking(channelId, note, queuedTime, offset - foffset, 128, 0)
 				});
 				break;
