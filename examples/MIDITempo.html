@@ -229,7 +229,7 @@
 		{
 			prevVal = player.BPM;
 			t = player.currentTime;
-			/*player.stop();*/
+			player.stop();
 			player.BPM = newVal;
 			player.loadFile(song[0]);
 			player.BPM = newVal;
@@ -240,6 +240,7 @@
 		function transposeChange(newVal)
 		{
 			t = player.currentTime;
+			player.stop();
 			player.Transpose = parseInt(newVal);
 			player.loadFile(song[0]);
 			player.currentTime = t+1;
