@@ -74,6 +74,7 @@
 
 
 	<script type="text/javascript">
+		var isPlaying = false;
 
 		function stopRKey(evt) { 
 			var evt = (evt) ? evt : ((event) ? event : null); 
@@ -89,6 +90,7 @@
 		// Toggle between Pause and Play modes.
 		var pausePlayStop = function (stop) {
 			var d = document.getElementById("pausePlayStop");
+			isPlaying = false;
 			if (stop) {
 				MIDI.Player.stop();
 				d.src = "./images/play.png";
@@ -98,6 +100,7 @@
 			} else {
 				d.src = "./images/pause.png";
 				MIDI.Player.resume();
+				isPlaying = true;
 			}
 		};
 		eventjs.add(window, "load", function (event) {
@@ -229,22 +232,34 @@
 		{
 			prevVal = player.BPM;
 			t = player.currentTime;
-			player.stop();
+			if(isPlaying)
+			{
+				player.stop();
+			}
 			player.BPM = newVal;
 			player.loadFile(song[0]);
 			player.BPM = newVal;
 			player.currentTime = (((t+10) * prevVal) / newVal);
-			player.start();
+			if(isPlaying)
+			{
+				player.start();
+			}
 		}
 
 		function transposeChange(newVal)
 		{
 			t = player.currentTime;
-			player.stop();
+			if(isPlaying)
+			{
+				player.stop();
+			}
 			player.Transpose = parseInt(newVal);
 			player.loadFile(song[0]);
 			player.currentTime = t+1;
-			player.start();
+			if(isPlaying)
+			{
+				player.start();
+			}
 		}
 
 		function handleFiles(files) {
