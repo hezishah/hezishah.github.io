@@ -628,7 +628,7 @@
 	this.currentTrack = 0;
 	this.playerState = 'stop';
 	this.$audioEl.crossOrigin = "anonymous";
-  this.$audioEl.volume = 0.15;
+  this.$audioEl.volume = 1.0;//0.5;//0.15;
 	this.tracks = opts.tracks;
 
 	this.$audioEl.addEventListener("timeupdate", this.timeUpdate.bind(this), false);
@@ -684,7 +684,10 @@ Player.prototype.timeUpdate = function() {
 
 	if (playPercent > 99.9) {
 		this.$playbtn.className = "playbtn";
-		this.setPlayerState('stop');
+		if(currentSlide+1>=numTracks)
+      this.setPlayerState('stop');
+    else
+      next();
 	}
 }
 
@@ -792,7 +795,7 @@ var listItems = [],
                 { "time": "216", "title": "DJK - Black Velvet", "img": "https://dl.dropbox.com/s/e2b9l3cbjy4wthw/retrosoul.jpg", "src": "BlackVelvet.mp3" }, 
                 { "time": "175", "title": "DJK - Summer of 69", "img": "https://dl.dropbox.com/s/myu3b9qtf74sz3i/snowflake2.jpg", "src": "SummerOf69.mp3" }, 
                 { "time": "105", "title": "DJK - קרוב אל ליבך", "img": "https://dl.dropbox.com/s/fz8452movdjnfe8/happyrock.jpg", "src": "CloseToYouHeart.mp3" }];
-
+var numTracks = 0;
 playlist.forEach(function (el, i) {
   var _el$title$split = el.title.split('-');
 
@@ -808,6 +811,7 @@ playlist.forEach(function (el, i) {
 
   listItems.push(itemList);
   detailItems.push(itemDetail);
+  numTracks++;
 });
 
 document.querySelector('.list section').innerHTML = listItems.join('');
