@@ -1,9 +1,10 @@
 <!DOCTYPE html><html class=''>
 <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:100,400,500,700'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'>
 <head>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="https://hammerjs.github.io/dist/hammer.js"></script>
 <style class="cp-pen-styles">body {
   font-family: 'Roboto', sans-serif;
   color: #444;
@@ -738,7 +739,14 @@ Player.prototype.formatTime = function(seconds) {
 Player.prototype.setupAnalyser = function() {
 	this.$canvas = this.$container.querySelector('.analyser');
 	this.ctx = this.$canvas.getContext('2d');
-	this.audioContext = new AudioContext() || new webkitAudioContext();
+  if(!window.AudioContext)
+  {
+    this.audioContext = new webkitAudioContext()
+  }
+  else
+  {
+    this.audioContext = new AudioContext();
+  }
 	this.analyser = this.audioContext.createAnalyser();
 
 	var source = this.audioContext.createMediaElementSource(this.$audioEl);
