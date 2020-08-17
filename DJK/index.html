@@ -16,7 +16,7 @@
   background-color: #f8f8f8;
   position: relative;
   display: flex;
-  height: 610px;
+  height: 1010px;
   width: 365px;
   margin: 10px auto;
   box-shadow: 0px 2px 15px #ddc;
@@ -90,7 +90,7 @@
     top: 0 !important;
     /*top: -54px !important;*/
     left: 0;
-    height: 365px;
+    height: 765px;
     width: 100%;
     z-index: 10;
     transition: all .4s ease-in-out;
@@ -305,7 +305,7 @@
 .slider .slide:nth-child(1) { display: flex !important; }
 
 /** Pure Css Slider **/
-.slider { width: calc(365px * 6); }
+.slider { width: calc(365px * 10); }
 .slider .slide { 
   display: flex; 
   width: 365px; 
@@ -363,6 +363,18 @@
   -webkit-transform: translateX(-1825px);
           transform: translateX(-1825px);
 }
+.wrapper[data-pos="6"] .slider {
+  -webkit-transform: translateX(-2190px);
+          transform: translateX(-2190px);
+}
+.wrapper[data-pos="7"] .slider {
+  -webkit-transform: translateX(-2555px);
+          transform: translateX(-2555px);
+}
+.wrapper[data-pos="8"] .slider {
+  -webkit-transform: translateX(-2920px);
+          transform: translateX(-2920px);
+}
 
 .wrapper[data-pos="0"] .player-indicator,
 .wrapper[data-pos="0"] .player .track .bar,
@@ -406,6 +418,27 @@
   background-color: rgba(244, 67, 54, 1);
   transition: all .4s ease-in-out;
 }
+.wrapper[data-pos="6"] .player-indicator,
+.wrapper[data-pos="6"] .player .track .bar,
+.wrapper[data-pos="6"] .player .track .bar:before,
+.wrapper[data-pos="6"] .player .playbtn {
+  background-color: rgba(244, 67, 54, 1);
+  transition: all .4s ease-in-out;
+}
+.wrapper[data-pos="7"] .player-indicator,
+.wrapper[data-pos="7"] .player .track .bar,
+.wrapper[data-pos="7"] .player .track .bar:before,
+.wrapper[data-pos="7"] .player .playbtn {
+  background-color: rgba(244, 67, 54, 1);
+  transition: all .4s ease-in-out;
+}
+.wrapper[data-pos="8"] .player-indicator,
+.wrapper[data-pos="8"] .player .track .bar,
+.wrapper[data-pos="8"] .player .track .bar:before,
+.wrapper[data-pos="8"] .player .playbtn {
+  background-color: rgba(244, 67, 54, 1);
+  transition: all .4s ease-in-out;
+}
 
 .wrapper[data-pos="0"] .player .track .progress {
   background-color: rgba(0, 150, 136, .3);
@@ -424,6 +457,15 @@
   background-color: rgba(238, 119, 51, .3);
 }
 .wrapper[data-pos="5"] .player .track .progress {
+  background-color: rgba(244, 67, 54, .3);
+}
+.wrapper[data-pos="6"] .player .track .progress {
+  background-color: rgba(244, 67, 54, .3);
+}
+.wrapper[data-pos="7"] .player .track .progress {
+  background-color: rgba(244, 67, 54, .3);
+}
+.wrapper[data-pos="8"] .player .track .progress {
   background-color: rgba(244, 67, 54, .3);
 }
 
@@ -802,7 +844,10 @@ var listItems = [],
                 { "time": "78", "title": "DJK - Simply the best", "img": "https://dl.dropbox.com/s/z1j07kiqo9r2mj9/track3.jpeg", "src": "SimplyTheBest.mp3" }, 
                 { "time": "216", "title": "DJK - Black Velvet", "img": "https://dl.dropbox.com/s/e2b9l3cbjy4wthw/retrosoul.jpg", "src": "BlackVelvet.mp3" }, 
                 { "time": "175", "title": "DJK - Summer of 69", "img": "https://dl.dropbox.com/s/myu3b9qtf74sz3i/snowflake2.jpg", "src": "SummerOf69.mp3" }, 
-                { "time": "105", "title": "DJK - קרוב אל ליבך", "img": "https://dl.dropbox.com/s/fz8452movdjnfe8/happyrock.jpg", "src": "CloseToYouHeart.mp3" }];
+                { "time": "105", "title": "DJK - קרוב אל ליבך", "img": "https://dl.dropbox.com/s/fz8452movdjnfe8/happyrock.jpg", "src": "CloseToYouHeart.mp3" },
+                { "time": "105", "title": "DJK - Easy Lover", "img": "https://dl.dropbox.com/s/fz8452movdjnfe8/happyrock.jpg", "src": "EasyLover.mp3" },
+                { "time": "105", "title": "DJK - Invisible Touch", "img": "https://dl.dropbox.com/s/fz8452movdjnfe8/happyrock.jpg", "src": "InvisibleTouch.mp3" },
+                { "time": "105", "title": "DJK - Hold the Line", "img": "https://dl.dropbox.com/s/fz8452movdjnfe8/happyrock.jpg", "src": "HoldTheLine-Take2.mp3" }];
 var numTracks = 0;
 playlist.forEach(function (el, i) {
   var _el$title$split = el.title.split('-');
@@ -872,7 +917,7 @@ $('.detail .close').on('click', function (evt) {
 $('.controls .zmdi-fast-rewind').on('click', prev);
 $('.controls .zmdi-fast-forward').on('click', next);
 
-var slideCount = 6,
+var slideCount = 10,
     step = 5,
     maxSpan = 100,
     currentSpan = 0,
