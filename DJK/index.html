@@ -375,6 +375,10 @@
   -webkit-transform: translateX(-2920px);
           transform: translateX(-2920px);
 }
+.wrapper[data-pos="9"] .slider {
+  -webkit-transform: translateX(-3285px);
+          transform: translateX(-3285px);
+}
 
 .wrapper[data-pos="0"] .player-indicator,
 .wrapper[data-pos="0"] .player .track .bar,
@@ -439,6 +443,13 @@
   background-color: rgba(244, 67, 54, 1);
   transition: all .4s ease-in-out;
 }
+.wrapper[data-pos="9"] .player-indicator,
+.wrapper[data-pos="9"] .player .track .bar,
+.wrapper[data-pos="9"] .player .track .bar:before,
+.wrapper[data-pos="9"] .player .playbtn {
+  background-color: rgba(244, 67, 54, 1);
+  transition: all .4s ease-in-out;
+}
 
 .wrapper[data-pos="0"] .player .track .progress {
   background-color: rgba(0, 150, 136, .3);
@@ -466,6 +477,9 @@
   background-color: rgba(244, 67, 54, .3);
 }
 .wrapper[data-pos="8"] .player .track .progress {
+  background-color: rgba(244, 67, 54, .3);
+}
+.wrapper[data-pos="9"] .player .track .progress {
   background-color: rgba(244, 67, 54, .3);
 }
 
@@ -847,7 +861,8 @@ var listItems = [],
                 { "time": "105", "title": "DJK - קרוב אל ליבך", "img": "https://dl.dropbox.com/s/fz8452movdjnfe8/happyrock.jpg", "src": "CloseToYouHeart.mp3" },
                 { "time": "105", "title": "DJK - Easy Lover", "img": "https://dl.dropbox.com/s/fz8452movdjnfe8/happyrock.jpg", "src": "EasyLover.mp3" },
                 { "time": "105", "title": "DJK - Invisible Touch", "img": "https://dl.dropbox.com/s/fz8452movdjnfe8/happyrock.jpg", "src": "InvisibleTouch.mp3" },
-                { "time": "105", "title": "DJK - Hold the Line", "img": "https://dl.dropbox.com/s/fz8452movdjnfe8/happyrock.jpg", "src": "HoldTheLine-Take2.mp3" }];
+                { "time": "105", "title": "DJK - Hold the Line", "img": "https://dl.dropbox.com/s/fz8452movdjnfe8/happyrock.jpg", "src": "HoldTheLine-Take2.mp3" },
+                { "time": "105", "title": "DJK - Kayleigh", "img": "https://dl.dropbox.com/s/fz8452movdjnfe8/happyrock.jpg", "src": "Kayleigh.mp3" }];
 var numTracks = 0;
 playlist.forEach(function (el, i) {
   var _el$title$split = el.title.split('-');
