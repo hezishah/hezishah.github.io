@@ -55,7 +55,7 @@ Player.prototype = {
       sound = data.howl;
     } else {
       sound = data.howl = new Howl({
-        src: ['./Shalom/' + data.file + '.m4a','./Shalom/' + data.file + '.mp3', './audio/' + data.file + '.webm'],
+        src: ['./Shalom/' + data.file + '.mp3', './Shalom/' + data.file + '.m4a'],
         html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
         onplay: function() {
           // Display the duration.
@@ -298,7 +298,7 @@ var player = new Player([
   },
   {
     title: 'הולכת בדרכים',
-    file: "WalkTheRoads",
+    file: "WalkTheWays",
     howl: null
   }
 ]);
