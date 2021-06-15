@@ -300,6 +300,16 @@ var player = new Player([
     title: 'הולכת בדרכים',
     file: "WalkTheWays",
     howl: null
+  },
+  {
+    title: 'Take1 - בא לשכונה בחור חדש',
+    file: "shchuna",
+    howl: null
+  },
+  {
+    title: 'Take 2 - בא לשכונה בחור חדש',
+    file: "shchuna2",
+    howl: null
   }
 ]);
 
