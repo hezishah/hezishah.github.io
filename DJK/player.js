@@ -307,13 +307,23 @@ var player = new Player([
     howl: null
   },
   {
-    title: 'Take1 - בא לשכונה בחור חדש',
+    title: '1 בא לשכונה בחור חדש',
     file: "shchuna",
     howl: null
   },
   {
-    title: 'Take 2 - בא לשכונה בחור חדש',
+    title: '2 בא לשכונה בחור חדש',
     file: "shchuna2",
+    howl: null
+  },
+  {
+    title: 'בחור אנלוגי בעולם דיגיאלי',
+    file: "analog",
+    howl: null
+  },
+  {
+    title: 'ילד מזדקן',
+    file: "AgingKid",
     howl: null
   }
 ]);
