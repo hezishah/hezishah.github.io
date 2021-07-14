@@ -287,8 +287,8 @@ var player = new Player([
     howl: null
   },
   {
-    title: 'iphone - משיח',
-    file: 'mashiah',
+    title: 'ככה וככה',
+    file: 'KahaVeKaha',
     howl: null
   },
   {
@@ -297,23 +297,8 @@ var player = new Player([
     howl: null
   },
   {
-    title: 'ככה וככה',
-    file: 'KahaVeKaha',
-    howl: null
-  },
-  {
     title: 'הולכת בדרכים',
     file: "WalkTheWays",
-    howl: null
-  },
-  {
-    title: '1 בא לשכונה בחור חדש',
-    file: "shchuna",
-    howl: null
-  },
-  {
-    title: '2 בא לשכונה בחור חדש',
-    file: "shchuna2",
     howl: null
   },
   {
@@ -325,7 +310,18 @@ var player = new Player([
     title: 'ילד מזדקן',
     file: "AgingKid",
     howl: null
-  }
+  },
+  {
+    title: 'נערה במשקפיים',
+    file: "Glasses",
+    howl: null
+  },
+  {
+    title: '2 בא לשכונה בחור חדש',
+    file: "shchuna2",
+    howl: null
+  },
+  
 ]);
 
 // Bind our player controls.
