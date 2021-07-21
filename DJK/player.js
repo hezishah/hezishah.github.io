@@ -297,8 +297,8 @@ var player = new Player([
     howl: null
   },
   {
-    title: 'הולכת בדרכים',
-    file: "WalkTheWays",
+    title: '2 בא לשכונה בחור חדש',
+    file: "shchuna2",
     howl: null
   },
   {
@@ -317,10 +317,15 @@ var player = new Player([
     howl: null
   },
   {
-    title: '2 בא לשכונה בחור חדש',
-    file: "shchuna2",
+    title: 'הולכת בדרכים',
+    file: "WalkTheWays",
     howl: null
   },
+  {
+    title: 'ערב אבוד',
+    file: "ErevAvud",
+    howl: null
+  }
   
 ]);
 
