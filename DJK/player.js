@@ -323,7 +323,17 @@ var player = new Player([
   },
   {
     title: 'ערב אבוד',
-    file: "ErevAvud",
+    file: "Avud",
+    howl: null
+  },
+  {
+    title: 'שטח ההפקר',
+    file: "Hefker",
+    howl: null
+  },
+  {
+    title: 'העיקר זה הרומנטיקה',
+    file: "Romantic",
     howl: null
   }
   
