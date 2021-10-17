@@ -335,8 +335,17 @@ var player = new Player([
     title: 'העיקר זה הרומנטיקה',
     file: "Romantic-2",
     howl: null
-  }
-  
+  },
+  {
+    title: 'אין לי כסף',
+    file: "Money",
+    howl: null
+  },
+  {
+    title: 'סימנים של סתיו',
+    file: "Stav",
+    howl: null
+  }, 
 ]);
 
 // Bind our player controls.
