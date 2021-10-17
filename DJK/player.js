@@ -338,7 +338,7 @@ var player = new Player([
   },
   {
     title: 'אין לי כסף',
-    file: "Money",
+    file: "money",
     howl: null
   },
   {
