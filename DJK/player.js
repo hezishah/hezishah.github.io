@@ -297,13 +297,13 @@ var player = new Player([
     howl: null
   },
   {
-    title: '2 בא לשכונה בחור חדש',
-    file: "shchuna2",
+    title: 'הולכת בדרכים',
+    file: "WalkTheWays",
     howl: null
   },
   {
-    title: 'בחור אנלוגי בעולם דיגיאלי',
-    file: "analog",
+    title: '2 בא לשכונה בחור חדש',
+    file: "shchuna2",
     howl: null
   },
   {
@@ -312,18 +312,13 @@ var player = new Player([
     howl: null
   },
   {
+    title: 'בחור אנלוגי בעולם דיגיאלי',
+    file: "analog",
+    howl: null
+  },
+  {
     title: 'נערה במשקפיים',
     file: "Glasses",
-    howl: null
-  },
-  {
-    title: 'הולכת בדרכים',
-    file: "WalkTheWays",
-    howl: null
-  },
-  {
-    title: 'ערב אבוד',
-    file: "Avud",
     howl: null
   },
   {
@@ -331,6 +326,11 @@ var player = new Player([
     file: "Hefker",
     howl: null
   },
+  {
+    title: 'סימנים של סתיו',
+    file: "Stav",
+    howl: null
+  }, 
   {
     title: 'העיקר זה הרומנטיקה',
     file: "Romantic-2",
@@ -342,10 +342,10 @@ var player = new Player([
     howl: null
   },
   {
-    title: 'סימנים של סתיו',
-    file: "Stav",
+    title: 'ערב אבוד',
+    file: "Avud",
     howl: null
-  }, 
+  },
 ]);
 
 // Bind our player controls.
