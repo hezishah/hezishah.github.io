@@ -322,15 +322,16 @@ var player = new Player([
     howl: null
   },
   {
+    title: 'סימנים של סתיו',
+    file: "Stav",
+    howl: null
+  },
+  {
     title: 'שטח ההפקר',
     file: "Hefker",
     howl: null
   },
-  {
-    title: 'סימנים של סתיו',
-    file: "Stav",
-    howl: null
-  }, 
+  
   {
     title: 'העיקר זה הרומנטיקה',
     file: "Romantic-2",
