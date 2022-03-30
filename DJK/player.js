@@ -347,6 +347,21 @@ var player = new Player([
     file: "Avud",
     howl: null
   },
+  {
+    title: 'חתול מפלצת',
+    file: "cat",
+    howl: null
+  },
+  {
+    title: 'שועל במנוסה',
+    file: "shual",
+    howl: null
+  },
+  {
+    title: 'בצהרי היום',
+    file: "noon",
+    howl: null
+  },
 ]);
 
 // Bind our player controls.
