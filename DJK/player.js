@@ -362,6 +362,11 @@ var player = new Player([
     file: "noon",
     howl: null
   },
+  {
+    title: 'שמש לך מצפים',
+    file: "sun",
+    howl: null
+  },
 ]);
 
 // Bind our player controls.
