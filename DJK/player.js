@@ -367,6 +367,11 @@ var player = new Player([
     file: "sun",
     howl: null
   },
+  {
+    title: 'שקיעתה של הזריחה',
+    file: "sunset",
+    howl: null
+  },
 ]);
 
 // Bind our player controls.
