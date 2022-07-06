@@ -272,18 +272,8 @@ Player.prototype = {
 // Setup our new audio player class and pass it the playlist.
 var player = new Player([
   {
-    title: 'היא תיקח אותך',
-    file: "SheWillGrabYou",
-    howl: null
-  },
-  {
     title: 'שיר דרך',
     file: "WaySong",
-    howl: null
-  },
-  {
-    title: 'משיח',
-    file: 'mashiah-hezi',
     howl: null
   },
   {
@@ -292,8 +282,18 @@ var player = new Player([
     howl: null
   },
   {
+    title: 'משיח',
+    file: 'mashiah-hezi',
+    howl: null
+  },
+  {
     title: 'קרן שמש מאוחרת',
     file: 'LateSunRay',
+    howl: null
+  },
+  {
+    title: 'ילד מזדקן',
+    file: "AgingKid",
     howl: null
   },
   {
@@ -307,23 +307,28 @@ var player = new Player([
     howl: null
   },
   {
-    title: 'ילד מזדקן',
-    file: "AgingKid",
-    howl: null
-  },
-  {
     title: 'בחור אנלוגי בעולם דיגיאלי',
     file: "analog",
     howl: null
   },
   {
-    title: 'נערה במשקפיים',
-    file: "Glasses",
+    title: 'שועל במנוסה',
+    file: "shual",
     howl: null
   },
   {
-    title: 'סימנים של סתיו',
-    file: "Stav",
+    title: 'שקיעתה של הזריחה',
+    file: "sunset",
+    howl: null
+  },
+  {
+    title: 'חתול מפלצת',
+    file: "cat",
+    howl: null
+  },
+  {
+    title: 'בצהרי היום',
+    file: "noon",
     howl: null
   },
   {
@@ -348,28 +353,23 @@ var player = new Player([
     howl: null
   },
   {
-    title: 'חתול מפלצת',
-    file: "cat",
+    title: 'נערה במשקפיים',
+    file: "Glasses",
     howl: null
   },
   {
-    title: 'שועל במנוסה',
-    file: "shual",
+    title: 'סימנים של סתיו',
+    file: "Stav",
     howl: null
   },
   {
-    title: 'בצהרי היום',
-    file: "noon",
+    title: 'היא תיקח אותך',
+    file: "SheWillGrabYou",
     howl: null
   },
   {
     title: 'שמש לך מצפים',
     file: "sun",
-    howl: null
-  },
-  {
-    title: 'שקיעתה של הזריחה',
-    file: "sunset",
     howl: null
   },
 ]);
