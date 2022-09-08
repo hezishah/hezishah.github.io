@@ -372,6 +372,11 @@ var player = new Player([
     file: "sun",
     howl: null
   },
+  {
+    title: 'בחברה להגנת הטבע',
+    file: "teva",
+    howl: null
+  },
 ]);
 
 // Bind our player controls.
