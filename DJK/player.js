@@ -377,6 +377,11 @@ var player = new Player([
     file: "teva",
     howl: null
   },
+  {
+    title: 'שמש שמש',
+    file: "sunsun",
+    howl: null
+  },
 ]);
 
 // Bind our player controls.
