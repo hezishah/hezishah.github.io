@@ -387,6 +387,11 @@ var player = new Player([
     file: "Batel",
     howl: null
   },
+  {
+    title: 'תן לי כח',
+    file: "force",
+    howl: null
+  },
 ]);
 
 // Bind our player controls.
