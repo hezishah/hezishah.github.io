@@ -392,6 +392,11 @@ var player = new Player([
     file: "force",
     howl: null
   },
+  {
+    title: 'בטי בם',
+    file: "betty",
+    howl: null
+  },
 ]);
 
 // Bind our player controls.
