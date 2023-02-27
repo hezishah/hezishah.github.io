@@ -402,6 +402,16 @@ var player = new Player([
     file: "shana",
     howl: null
   },
+  {
+    title: 'חצבים',
+    file: "hatzavim",
+    howl: null
+  },
+  {
+    title: 'פרצופה של המדינה',
+    file: "partzufa",
+    howl: null
+  },
 ]);
 
 // Bind our player controls.
