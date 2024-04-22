@@ -1,0 +1,40 @@
+<html>
+<header>
+    <script src="jquery-3.7.1.min.js"></script>
+    <style>
+        h1 {text-align: center;}
+        p {text-align: center;}
+        div {text-align: center;}
+        br {text-align: center;}
+    </style>
+</header>
+<body>
+    <h1>:מילה באנגלית</h1>
+    <p >Hello</p>
+    <br>
+    <h1>:פירוש </h1>
+    <br>
+    <div>
+        <input type="text" id="lname" name="lname">
+    </div>
+    <p >Hello</p>
+    <div>
+        <button onclick="$('p').last().show()">Show</button>
+    </div>
+    <script>
+        function randomIntFromInterval(min, max) { // min and max included 
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        $.getJSON("words.json", function(words) {
+            let l = words.length;
+            const rndInt = randomIntFromInterval(0, l);
+            //var str = $( "p" ).first().text();
+            let word = words[rndInt]["מילה באנגלית"]
+            let trans = words[rndInt]["תרגום יבש"]
+            $( "p" ).first().html( word );
+            $( "p" ).last().html( trans ).hide();
+        }); 
+    </script>
+</body>
+</html>
