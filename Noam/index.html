@@ -1,6 +1,5 @@
 <html>
-<head>
-    <meta name="apple-mobile-web-app-capable" content="yes">
+<header>
     <script src="jquery-3.7.1.min.js"></script>
     <style>
         h1 {text-align: center;}
@@ -8,9 +7,26 @@
         div {text-align: center;}
         br {text-align: center;}
     </style>
-</head>
+    <script>
+        function nextWord()
+        {
+            $.getJSON("words_v2.json", function(words) {
+                let l = words.length;
+                const rndInt = randomIntFromInterval(0, l);
+                //var str = $( "p" ).first().text();
+                let word = words[rndInt]["מילה באנגלית"]
+                let trans = words[rndInt]["תרגום יבש"]
+                $( "p" ).first().html( word );
+                $( "p" ).last().html( trans ).hide();
+            }); 
+        }
+    </script>
+</header>
 <body>
     <h1>:מילה באנגלית</h1>
+    <div>
+        <button onclick="nextWord()">Next</button>
+    </div>
     <p >Hello</p>
     <br>
     <h1>:פירוש </h1>
@@ -27,15 +43,7 @@
             return Math.floor(Math.random() * (max - min + 1) + min);
         }
 
-        $.getJSON("words.json", function(words) {
-            let l = words.length;
-            const rndInt = randomIntFromInterval(0, l);
-            //var str = $( "p" ).first().text();
-            let word = words[rndInt]["מילה באנגלית"]
-            let trans = words[rndInt]["תרגום יבש"]
-            $( "p" ).first().html( word );
-            $( "p" ).last().html( trans ).hide();
-        }); 
+        nextWord()
     </script>
 </body>
 </html>
