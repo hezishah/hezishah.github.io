@@ -8,23 +8,55 @@
         br {text-align: center;}
     </style>
     <script>
+        var known = []
+        if ( localStorage.getItem("knownWords") != null)
+        {
+            known = localStorage.getItem("knownWords");
+        }
         function nextWord()
         {
-            $.getJSON("words_v2.json", function(words) {
+            $.getJSON("words_v3.json", function(words) {
+                /*alert(known);*/
                 let l = words.length;
-                const rndInt = randomIntFromInterval(0, l);
+                var rndInt = randomIntFromInterval(0, l);
                 //var str = $( "p" ).first().text();
-                let word = words[rndInt]["מילה באנגלית"]
+                var word = ""
+                var level = 0
+                while(true)
+                {
+                    word = words[rndInt]["מילה באנגלית"]
+                    level = words[rndInt]["רמה"]
+                    if( known.indexOf(word) < 0 )
+                    {
+                        //break;
+                        if( (level === $('#cc').prop('selectedIndex')) || ($('#cc').prop('selectedIndex') === 0) )
+                            break;
+                    }
+                    rndInt += 1;
+                    rndInt %= l;
+                }
                 let trans = words[rndInt]["תרגום יבש"]
-                $( "p" ).first().html( word );
+                $( "p" ).first().html( word + ":" + level.toString() );
                 $( "p" ).last().html( trans ).hide();
             }); 
+        }
+        function knownWord()
+        {
+            known.push($( "p" ).first().html().valueOf())
+            localStorage.setItem("knownWords", known) 
         }
     </script>
 </header>
 <body>
     <h1>:מילה באנגלית</h1>
     <div>
+        Level:
+        <select id='cc' name='cc'>
+            <option value=0>All</option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+        </select>
         <button onclick="nextWord()">Next</button>
     </div>
     <p >Hello</p>
@@ -38,7 +70,11 @@
     <div>
         <button onclick="$('p').last().show()">Show</button>
     </div>
+    <div>
+        <button onclick="knownWord()">I know this word</button>
+    </div>
     <script>
+        $('#cc').index(0)
         function randomIntFromInterval(min, max) { // min and max included 
             return Math.floor(Math.random() * (max - min + 1) + min);
         }
