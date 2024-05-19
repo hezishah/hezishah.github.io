@@ -2,7 +2,7 @@ import pandas
 import json
 
 def main():
-    book = pandas.read_excel("words_v3.xlsx")
+    book = pandas.read_excel("words_v4.xlsx")
     d = book.to_dict('records')
     with open("words_v2.json", "w") as outfile: 
         json.dump(d, outfile)
