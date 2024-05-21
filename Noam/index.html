@@ -59,6 +59,12 @@
             }
             nextWord();
         }
+        function knownClear()
+        {
+            known = []
+            localStorage.setItem("knownWords", JSON.stringify(known));
+            nextWord();
+        }
     </script>
 </header>
 <body>
@@ -98,6 +104,9 @@
         <tbody>
         </tbody>
     </table>
+    <div>
+        <button onclick="knownClear()">Clear known words</button>
+    </div>
     <script>
         $('#cc').index(0)
         function randomIntFromInterval(min, max) { // min and max included 
