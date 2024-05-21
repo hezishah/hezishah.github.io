@@ -6,16 +6,19 @@
         p {text-align: center;}
         div {text-align: center;}
         br {text-align: center;}
+        table, tr, td {
+            border: 1px solid black;
+        }
     </style>
     <script>
         var known = []
         if ( localStorage.getItem("knownWords") != null)
         {
-            known = localStorage.getItem("knownWords");
+            known = JSON.parse(localStorage.getItem("knownWords"));
         }
         function nextWord()
         {
-            $.getJSON("words_v4.json", function(words) {
+            $.getJSON("words_v5.json", function(words) {
                 /*alert(known);*/
                 let l = words.length;
                 var rndInt = randomIntFromInterval(0, l);
@@ -38,12 +41,19 @@
                 let trans = words[rndInt]["תרגום יבש"]
                 $( "p" ).first().html( word + ":" + level.toString() );
                 $( "p" ).last().html( trans ).hide();
+                var thtml = "";
+                for (word in known)
+                {
+                    thtml += "<tr>\r\n<td>"+known[word]+"</td>\r\n</tr>\r\n"
+                } 
+                $( "tbody" ).first().html( thtml )
             }); 
         }
         function knownWord()
         {
-            known.push($( "p" ).first().html().valueOf())
-            localStorage.setItem("knownWords", known) 
+            const w = $( "p" ).first().html().valueOf();
+            known.push([w]);
+            localStorage.setItem("knownWords", JSON.stringify(known));
         }
     </script>
 </header>
@@ -75,6 +85,15 @@
     <div>
         <button onclick="knownWord()">I know this word</button>
     </div>
+    <table class="table table-dark table-striped" id="myTable">
+        <thead>
+        <tr>
+            <th scope="col">Knwon Word</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
     <script>
         $('#cc').index(0)
         function randomIntFromInterval(min, max) { // min and max included 
