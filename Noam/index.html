@@ -52,8 +52,11 @@
         function knownWord()
         {
             const w = $( "p" ).first().html().valueOf();
-            known.push(w);
-            localStorage.setItem("knownWords", JSON.stringify(known));
+            if(known.indexOf(w) < 0)
+            {
+                known.push(w);
+                localStorage.setItem("knownWords", JSON.stringify(known));
+            }
             nextWord();
         }
     </script>
