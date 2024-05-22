@@ -29,7 +29,7 @@
                 {
                     word = words[rndInt]["מילה באנגלית"]
                     level = words[rndInt]["רמה"]
-                    if( known.indexOf(word) < 0 )
+                    if( known.indexOf(word+":"+level) < 0 )
                     {
                         //break;
                         if( (level === $('#cc').prop('selectedIndex')) || ($('#cc').prop('selectedIndex') === 0) )
