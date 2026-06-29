@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>אמריליו · אוסף השירים</title>
+  <style>
+    :root {
+      --bg: #0e1020;
+      --bg2: #171a33;
+      --card: #1e2240;
+      --card-hover: #272c52;
+      --accent: #ffb347;
+      --accent2: #ff7b54;
+      --text: #f2f3ff;
+      --muted: #9aa0c7;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Heebo", "Assistant", -apple-system, "Segoe UI", Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, #2a2f5c 0%, transparent 60%),
+                  radial-gradient(900px 500px at 0% 0%, #3a2050 0%, transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 130px;
+    }
+    header {
+      text-align: center;
+      padding: 48px 20px 24px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    header p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 10px 18px;
+    }
+    ul.playlist {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .song {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.05);
+      border-radius: 16px;
+      padding: 14px 18px;
+      cursor: pointer;
+      transition: background .2s, transform .12s, border-color .2s;
+    }
+    .song:hover { background: var(--card-hover); transform: translateY(-2px); }
+    .song.active {
+      border-color: var(--accent);
+      background: linear-gradient(90deg, rgba(255,179,71,.16), var(--card));
+    }
+    .song .num {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,.07);
+      color: var(--muted);
+      font-weight: 700;
+      font-size: .95rem;
+    }
+    .song.active .num {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #1a1320;
+    }
+    .song .meta { flex: 1; min-width: 0; }
+    .song .title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .song .sub { color: var(--muted); font-size: .82rem; margin-top: 2px; }
+    .song .icon {
+      width: 26px; height: 26px; flex: 0 0 auto;
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .song.active .icon { opacity: 1; }
+
+    /* Player bar */
+    .player {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(20,23,46,.92);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255,255,255,.08);
+      box-shadow: var(--shadow);
+      padding: 12px 18px calc(12px + env(safe-area-inset-bottom));
+      z-index: 10;
+    }
+    .player-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .now {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .now .now-title { font-weight: 700; font-size: 1.05rem; }
+    .now .now-sub { color: var(--muted); font-size: .8rem; }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .controls button {
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      padding: 6px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      transition: background .15s, transform .1s;
+    }
+    .controls button:hover { background: rgba(255,255,255,.1); }
+    .controls button:active { transform: scale(.92); }
+    .controls .play {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #1a1320;
+    }
+    .controls .play:hover { filter: brightness(1.08); background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+    .progress-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-variant-numeric: tabular-nums;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      flex: 1;
+      height: 6px;
+      border-radius: 6px;
+      background: rgba(255,255,255,.14);
+      cursor: pointer;
+      direction: ltr;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 15px; height: 15px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(255,179,71,.2);
+    }
+    input[type=range]::-moz-range-thumb {
+      width: 15px; height: 15px; border: none;
+      border-radius: 50%; background: var(--accent);
+    }
+    .vol-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .vol-row input[type=range] { max-width: 120px; }
+    svg { display: block; }
+    footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 24px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>אמריליו</h1>
+    <p>אוסף השירים · נגן מקוון</p>
+  </header>
+
+  <main class="wrap">
+    <ul class="playlist" id="playlist"></ul>
+  </main>
+
+  <footer>נבנה מתוך songs.json · לחצו על שיר כדי להשמיע</footer>
+
+  <div class="player" aria-label="נגן">
+    <div class="player-inner">
+      <div class="now">
+        <div style="min-width:0;">
+          <div class="now-title" id="nowTitle">בחרו שיר</div>
+          <div class="now-sub" id="nowSub">—</div>
+        </div>
+        <div class="vol-row">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color:var(--muted)"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2a4.5 4.5 0 00-2.5-4v8a4.5 4.5 0 002.5-4z"/></svg>
+          <input type="range" id="vol" min="0" max="1" step="0.01" value="1" aria-label="עוצמה">
+        </div>
+      </div>
+
+      <div class="progress-row">
+        <span id="cur">0:00</span>
+        <input type="range" id="seek" min="0" max="100" value="0" step="0.1" aria-label="מיקום">
+        <span id="dur">0:00</span>
+      </div>
+
+      <div class="controls" style="justify-content:center;">
+        <button id="prev" title="הקודם" aria-label="הקודם">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+        <button class="play" id="play" title="נגן/השהה" aria-label="נגן או השהה">
+          <svg id="playIcon" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button id="next" title="הבא" aria-label="הבא">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="audio" preload="metadata"></audio>
+
+  <script>
+    // Embedded so the page works when opened directly (file://) where fetch() is blocked.
+    // Mirrors songs.json.
+    const DATA = {
+      "songs": [
+        { "index": "1", "title": "ומתוק האור בעיניים", "file": "ומתוק האור בעיניים מלא חדש.m4a" },
+        { "index": "2", "title": "רקפת", "file": "רקפת מלא חדש.m4a" },
+        { "index": "3", "title": "בארץ אהבתי", "file": "בארץ אהבתי עם קולות גבעתיים.m4a" },
+        { "index": "6", "title": "מחרוזת ילדים", "file": "מחרוזת ילדים אמריליו מלא חדש.m4a" },
+        { "index": "7", "title": "ההר הירוק", "file": "ההר הירוק דורית מלא.m4a" },
+        { "index": "10", "title": "הבלדה על השיער", "file": "הבלדה על השיער חדש מלא.m4a" },
+        { "index": "11", "title": "שלוש אהבותיי", "file": "שלוש אהבותיי שלם חדש.m4a" },
+        { "index": "15", "title": "האיש מן הבקעה", "file": "האיש מן הבקעה.m4a" }
+      ]
+    };
+
+    const songs = DATA.songs;
+    const audio = document.getElementById('audio');
+    const listEl = document.getElementById('playlist');
+    const playBtn = document.getElementById('play');
+    const playIcon = document.getElementById('playIcon');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const seek = document.getElementById('seek');
+    const vol = document.getElementById('vol');
+    const curEl = document.getElementById('cur');
+    const durEl = document.getElementById('dur');
+    const nowTitle = document.getElementById('nowTitle');
+    const nowSub = document.getElementById('nowSub');
+
+    let current = -1;
+    const PLAY = '<path d="M8 5v14l11-7z"/>';
+    const PAUSE = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+
+    function fmt(s) {
+      if (!isFinite(s)) return '0:00';
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60).toString().padStart(2, '0');
+      return m + ':' + sec;
+    }
+
+    // Build playlist
+    songs.forEach((song, i) => {
+      const li = document.createElement('li');
+      li.className = 'song';
+      li.dataset.index = i;
+      li.innerHTML =
+        '<div class="num">' + song.index + '</div>' +
+        '<div class="meta"><div class="title"></div><div class="sub">קובץ שמע</div></div>' +
+        '<svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+      li.querySelector('.title').textContent = song.title;
+      li.addEventListener('click', () => {
+        if (i === current) { togglePlay(); }
+        else { load(i, true); }
+      });
+      listEl.appendChild(li);
+    });
+
+    function highlight() {
+      [...listEl.children].forEach((li, i) => li.classList.toggle('active', i === current));
+    }
+
+    function load(i, autoplay) {
+      current = (i + songs.length) % songs.length;
+      const song = songs[current];
+      audio.src = encodeURI(song.file);
+      nowTitle.textContent = song.title;
+      nowSub.textContent = 'שיר ' + (current + 1) + ' מתוך ' + songs.length;
+      highlight();
+      if (autoplay) audio.play().catch(() => {});
+    }
+
+    function togglePlay() {
+      if (current === -1) { load(0, true); return; }
+      if (audio.paused) audio.play().catch(() => {}); else audio.pause();
+    }
+
+    playBtn.addEventListener('click', togglePlay);
+    prevBtn.addEventListener('click', () => load(current <= 0 ? songs.length - 1 : current - 1, true));
+    nextBtn.addEventListener('click', () => load(current + 1, true));
+
+    audio.addEventListener('play', () => { playIcon.innerHTML = PAUSE; });
+    audio.addEventListener('pause', () => { playIcon.innerHTML = PLAY; });
+    audio.addEventListener('ended', () => load(current + 1, true));
+
+    audio.addEventListener('loadedmetadata', () => { durEl.textContent = fmt(audio.duration); });
+    audio.addEventListener('timeupdate', () => {
+      curEl.textContent = fmt(audio.currentTime);
+      if (audio.duration) seek.value = (audio.currentTime / audio.duration) * 100;
+    });
+    seek.addEventListener('input', () => {
+      if (audio.duration) audio.currentTime = (seek.value / 100) * audio.duration;
+    });
+    vol.addEventListener('input', () => { audio.volume = vol.value; });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
+      else if (e.code === 'ArrowLeft') load(current + 1, true);   // RTL: left = next
+      else if (e.code === 'ArrowRight') load(current <= 0 ? songs.length - 1 : current - 1, true);
+    });
+  </script>
+</body>
+</html>
